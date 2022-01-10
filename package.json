@@ -27,14 +27,14 @@
     "typescript": "^4.4.2"
   },
   "files": [
-    "Arr.ts",
-    "index.ts",
-    "Maths.ts",
-    "Obj.ts",
-    "SimpleCryptoJS.ts",
-    "Str.ts",
-    "types.ts",
-    "Value.ts",
-    "Logger/**/*"
+    "./dist/Arr.ts",
+    "./dist/index.ts",
+    "./dist/Maths.ts",
+    "./dist/Obj.ts",
+    "./dist/SimpleCryptoJS.ts",
+    "./dist/Str.ts",
+    "./dist/types.ts",
+    "./dist/Value.ts",
+    "./dist/Logger/**/*"
   ]
 }
