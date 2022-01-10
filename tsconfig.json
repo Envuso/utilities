@@ -19,17 +19,11 @@
     "declaration": true,
     "types": [
       "node",
-      "reflect-metadata"
     ],
     "typeRoots": [
       "node_modules/@types",
       "src/**"
     ],
-    "paths": {
-      "class-transformer": [
-        "./../node_modules/class-transformer"
-      ]
-    },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true
@@ -39,17 +33,6 @@
     "./dist"
   ],
   "include": [
-    "src/Exceptions/**/*",
-    "src/Http/**/*",
-    "src/Middleware/**/*",
-    "src/Routing/**/*",
-    "src/Utility/**/*",
-    "src/index.ts",
-    "src/Server.ts"
-  ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+    "src/**/*",
+  ]
 }
