@@ -1,10 +1,9 @@
 {
-  "version": "0.0.3",
+  "version": "0.0.4-1",
   "name": "@envuso/utilities",
   "author": "Sam Parton @iDevelopThings",
   "description": "Envuso is a backend framework focusing building apis using Fastify and MongoDB support.",
   "license": "MIT",
-  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
