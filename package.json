@@ -1,9 +1,11 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "@envuso/utilities",
   "author": "Sam Parton @iDevelopThings",
   "description": "Envuso is a backend framework focusing building apis using Fastify and MongoDB support.",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --rs --transpile-only src/index.ts --input-type=module"
   },
@@ -27,14 +29,6 @@
     "typescript": "^4.4.2"
   },
   "files": [
-    "./dist/Arr.ts",
-    "./dist/index.ts",
-    "./dist/Maths.ts",
-    "./dist/Obj.ts",
-    "./dist/SimpleCryptoJS.ts",
-    "./dist/Str.ts",
-    "./dist/types.ts",
-    "./dist/Value.ts",
-    "./dist/Logger/**/*"
+    "dist/**/*"
   ]
 }
