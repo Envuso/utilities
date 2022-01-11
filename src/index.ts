@@ -8,3 +8,6 @@ export * from './SimpleCryptoJS';
 export * from './Str';
 export * from './types';
 export * from './Value';
+export * from './Classes';
+export * from './Http';
+export * from './Exception/Exception';
