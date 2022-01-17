@@ -6,6 +6,7 @@ export * from './Maths';
 export * from './Obj';
 export * from './SimpleCryptoJS';
 export * from './Str';
+export * from './FileLoader';
 export * from './types';
 export * from './Value';
 export * from './Classes';
