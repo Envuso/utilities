@@ -16,6 +16,7 @@ export interface ImportedModule<T> {
 	name: any;
 	originalPath: string;
 	forRunEnvironment: string;
+	export: string;
 }
 
 export class FileLoader {
@@ -208,7 +209,8 @@ export class FileLoader {
 					instance          : instance,
 					name              : instance.name,
 					originalPath      : path,
-					forRunEnvironment : pathForEnv
+					forRunEnvironment : pathForEnv,
+					export            : moduleInstanceKey,
 				});
 
 			} catch (error) {
