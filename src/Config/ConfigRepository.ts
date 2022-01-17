@@ -1,15 +1,14 @@
 import _ from 'lodash';
-import {ConfigRepositoryContract} from "./ConfigRepositoryContract";
 import {ConfigFile} from "./ConfigurationFile";
 
-export class ConfigRepository implements ConfigRepositoryContract {
+export class ConfigRepository {
 
 	/**
 	 * All of the Config loaded into the repository
 	 *
 	 * @private
 	 */
-	public _config: any;
+	public static _config: any;
 
 	private static pendingConfigurationFiles = [];
 
@@ -22,7 +21,7 @@ export class ConfigRepository implements ConfigRepositoryContract {
 	 *
 	 * @private
 	 */
-	public loadConfigFrom(configFiles: ConfigFile[]) {
+	public static loadConfigFrom(configFiles: ConfigFile[]) {
 		const configObject = {};
 
 		for (let configFile of configFiles) {
@@ -38,7 +37,7 @@ export class ConfigRepository implements ConfigRepositoryContract {
 	 * @param key
 	 * @param _default
 	 */
-	public get<T extends string, R extends any>(key: T, _default: any = null): R {
+	public static get<T extends string, R extends any>(key: T, _default: any = null): R {
 		if (key.includes('.')) {
 			const parts = key.split('.');
 			parts[0]    = parts[0].toString().toLowerCase();
@@ -58,7 +57,7 @@ export class ConfigRepository implements ConfigRepositoryContract {
 	 * @param _default
 	 * @return {typeof Config[T]}
 	 */
-	public file<T extends string, R extends any>(file: T, _default: any = null): R {
+	public static file<T extends string, R extends any>(file: T, _default: any = null): R {
 		return this._config[file.toLowerCase()] ?? _default;
 	};
 
@@ -68,7 +67,7 @@ export class ConfigRepository implements ConfigRepositoryContract {
 	 * @param key
 	 * @param value
 	 */
-	public set(key: string, value: any) {
+	public static set(key: string, value: any) {
 		_.set(this._config, key, value);
 	}
 
@@ -78,7 +77,7 @@ export class ConfigRepository implements ConfigRepositoryContract {
 	 * @param key
 	 * @param value
 	 */
-	public put(key: string, value: any) {
+	public static put(key: string, value: any) {
 		//@ts-ignore
 		const current = this.get(key);
 
@@ -102,11 +101,11 @@ export class ConfigRepository implements ConfigRepositoryContract {
 	 *
 	 * @param key
 	 */
-	public has(key: string): boolean {
+	public static has(key: string): boolean {
 		return _.has(this._config, key);
 	}
 
-	public reset() {
+	public static reset() {
 		this._config = {};
 	}
 
