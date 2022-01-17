@@ -23,6 +23,14 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@envuso/types@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@envuso/types/-/types-0.0.1.tgz#b749a3805dfc883c8da399c117e2c35ec9e85c82"
+  integrity sha512-za9YAlr36bNIFfMk4Sc+upgavKgZYoz28rB42jopdBn5+KP+Uu7sN2RJ5kSnaYgtCsuVyFHtBKjgd42Vmw0szA==
+  dependencies:
+    tslib "^2.3.1"
+    tsyringe "^4.6.0"
+
 "@tsconfig/node10@^1.0.7":
   version "1.0.8"
   resolved "https://registry.npmjs.org/@tsconfig/node10/-/node10-1.0.8.tgz"
@@ -758,6 +766,11 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
+tslib@^1.9.3:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
+  integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
+
 tslib@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.3.1.tgz"
@@ -769,6 +782,13 @@ tslog@^3.3.1:
   integrity sha512-An3uyXX95uU/X7v5H6G9OKW6ip/gVOpvsERGJ/nR4Or5TP5GwoI9nUjhNWEc8mJOWC7uhPMg2UzkrVDUtadELg==
   dependencies:
     source-map-support "^0.5.21"
+
+tsyringe@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/tsyringe/-/tsyringe-4.6.0.tgz#14915d3d7f0db35e1cf7269bdbf7c440713c8d07"
+  integrity sha512-BMQAZamSfEmIQzH8WJeRu1yZGQbPSDuI9g+yEiKZFIcO46GPZuMOC2d0b52cVBdw1d++06JnDSIIZvEnogMdAw==
+  dependencies:
+    tslib "^1.9.3"
 
 typescript@^4.4.2:
   version "4.5.4"
