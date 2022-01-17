@@ -11,3 +11,4 @@ export * from './Value';
 export * from './Classes';
 export * from './Http';
 export * from './Exception/Exception';
+export * from './Config';

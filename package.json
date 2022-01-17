@@ -1,5 +1,5 @@
 {
-  "version": "0.0.4-3",
+  "version": "0.0.4-4",
   "name": "@envuso/utilities",
   "author": "Sam Parton @iDevelopThings",
   "description": "Envuso is a backend framework focusing building apis using Fastify and MongoDB support.",
@@ -14,6 +14,8 @@
     "@types/pluralize": "^0.0.29",
     "chalk": "^4.1.0",
     "crypto-js": "^4.1.1",
+    "dotenv": "^14.1.0",
+    "dotenv-expand": "^6.0.1",
     "lodash": "^4.17.21",
     "mongodb": "^4.3.0",
     "pluralize": "^8.0.0",
