@@ -101,44 +101,4 @@ export class Arr {
 	}
 }
 
-//declare global {
-//	interface Array<T> {
-//
-//		isEmpty(): boolean;
-//
-//		contains(item: any): boolean;
-//
-//		has(...items: any[]): boolean;
-//
-//		random(): T;
-//
-//		first(): T;
-//
-//		last(): T;
-//	}
-//}
 
-//
-//Array.prototype.first = function <T>(): T {
-//	return Arr.first<T>(this);
-//};
-//
-//Array.prototype.last = function <T>(): T {
-//	return Arr.last<T>(this);
-//};
-//
-//Array.prototype.isEmpty = function (): boolean {
-//	return this.length === 0;
-//};
-//
-//Array.prototype.contains = function (item: any): boolean {
-//	return Arr.contains(this, item);
-//};
-//
-//Array.prototype.has = function (...items: any[]): boolean {
-//	return Arr.has(this, ...items);
-//};
-//
-//Array.prototype.random = function () {
-//	return this[Maths.randomInt(0, this.length - 1)];
-//};

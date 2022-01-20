@@ -47,6 +47,8 @@ export class Obj {
 	}
 
 	/**
+	 * Check if a property exists on an object.
+	 *
 	 * Contributed by https://github.com/Tecnology73
 	 * Commit was lost during mono-repo merge :(
 	 */
@@ -64,6 +66,8 @@ export class Obj {
 
 	/**
 	 * Check if a key exists on an object
+	 * This won't check the prototype chain etc.
+	 * This is strictly (obj[property] !== undefined)
 	 *
 	 * @param obj
 	 * @param property
@@ -231,6 +235,16 @@ export class Obj {
 		return false;
 	}
 
+	/**
+	 * Creates a new object with all elements that pass the test implemented by the provided function.
+	 *
+	 * Example:
+	 * {one : 1, two : 2}.filter(value => value === 1);
+	 * returns {one : 1}
+	 *
+	 * @param obj
+	 * @param {(value, key?: any) => boolean} filterMethod
+	 */
 	public static filter<T extends object>(obj: any, filterMethod: (value, key?: any) => boolean): Partial<T> {
 		const filteredObj: Partial<T> = {};
 
@@ -308,3 +322,4 @@ export class Obj {
 }
 
 export default Obj;
+

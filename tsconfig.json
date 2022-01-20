@@ -19,6 +19,8 @@
     "declaration": true,
     "types": [
       "node",
+      "jest",
+      "reflect-metadata"
     ],
     "typeRoots": [
       "node_modules/@types",
@@ -30,9 +32,10 @@
   },
   "exclude": [
     "node_modules",
-    "./dist"
+    "./dist",
+    "src/**/*.spec.ts"
   ],
   "include": [
-    "src/**/*",
+    "src/**/*"
   ]
 }
