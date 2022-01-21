@@ -9,8 +9,8 @@ describe('PatchedObject.ts', function () {
 	test('Patched object class', () => {
 		const data = {hello : 'world'};
 
-		expect(data.isEmpty).toBeDefined();
-		expect({}.isEmpty()).toBeTruthy();
+		expect(data._isEmpty).toBeDefined();
+		expect({}._isEmpty()).toBeTruthy();
 	});
 
 	test('iterating object', () => {
@@ -22,99 +22,99 @@ describe('PatchedObject.ts', function () {
 		}
 	});
 
-	test('native object.exists()', () => {
+	test('native object._exists()', () => {
 		const data = {hello : 'world'};
 
-		expect(data.exists).toBeDefined();
-		expect(data.exists('hello')).toBeTruthy();
-		expect(data.exists('goodbye')).toBeFalsy();
+		expect(data._exists).toBeDefined();
+		expect(data._exists('hello')).toBeTruthy();
+		expect(data._exists('goodbye')).toBeFalsy();
 	});
 
-	test('native object.has()', () => {
+	test('native object._has()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// has(property: any, includePropertyChain?: boolean): boolean;
-		expect(data.has).toBeDefined();
-		expect(data.has('hello')).toBeTruthy();
-		expect(data.has('missing')).toBeFalsy();
+		expect(data._has).toBeDefined();
+		expect(data._has('hello')).toBeTruthy();
+		expect(data._has('missing')).toBeFalsy();
 	});
 
-	test('native object.put()', () => {
+	test('native object._put()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// put(key: string, value: any);
-		expect(data.put).toBeDefined();
-		data.put('new', 'value');
+		expect(data._put).toBeDefined();
+		data._put('new', 'value');
 		expect(data['new'] === 'value').toBeTruthy();
 		expect(data['missing'] === 'value').toBeFalsy();
 	});
 
-	test('native object.get()', () => {
+	test('native object._get()', () => {
 		const data = {hello : 'world', key : 'Hi there.', truthyValue : true};
 		// get(key?: string, _default?: any);
-		expect(data.get).toBeDefined();
-		expect(data.get('truthyValue')).toBeTruthy();
-		expect(data.get('missing', false)).toBeFalsy();
+		expect(data._get).toBeDefined();
+		expect(data._get('truthyValue')).toBeTruthy();
+		expect(data._get('missing', false)).toBeFalsy();
 	});
 
-	test('native object.only()', () => {
+	test('native object._only()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// only(keys: string[]);
-		expect(data.only).toBeDefined();
-		expect(data.only(['hello'])).toEqual({hello : 'world'});
+		expect(data._only).toBeDefined();
+		expect(data._only(['hello'])).toEqual({hello : 'world'});
 	});
 
-	test('native object.except()', () => {
+	test('native object._except()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// except(keys: string[]);
-		expect(data.except).toBeDefined();
-		const except = data.except(['key']);
+		expect(data._except).toBeDefined();
+		const except = data._except(['key']);
 		expect(except).toEqual({hello : 'world'});
 	});
 
-	test('native object.keys()', () => {
+	test('native object._keys()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// keys(): (string | number)[];
-		expect(data.keys).toBeDefined();
-		expect(data.keys()).toEqual(['hello', 'key']);
+		expect(data._keys).toBeDefined();
+		expect(data._keys()).toEqual(['hello', 'key']);
 	});
 
-	test('native object.forget()', () => {
+	test('native object._forget()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// forget<T>(key: string);
-		expect(data.forget).toBeDefined();
-		expect(data.forget('key')).toEqual({hello : 'world'});
+		expect(data._forget).toBeDefined();
+		expect(data._forget('key')).toEqual({hello : 'world'});
 		expect(data['key']).toBeUndefined();
 	});
 
-	test('native object.pull()', () => {
+	test('native object._pull()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// pull(key: string, _default?: any): any;
-		expect(data.pull).toBeDefined();
-		expect(data.pull('key')).toEqual('Hi there.');
+		expect(data._pull).toBeDefined();
+		expect(data._pull('key')).toEqual('Hi there.');
 		expect(data['key']).toBeUndefined();
 	});
 
-	test('native object.count()', () => {
+	test('native object._count()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// count(): number;
-		expect(data.count).toBeDefined();
-		expect(data.count()).toEqual(2);
-		expect(data.forget('key').count()).toEqual(1);
+		expect(data._count).toBeDefined();
+		expect(data._count()).toEqual(2);
+		expect(data._forget('key')._count()).toEqual(1);
 	});
 
-	test('native object.filter()', () => {
+	test('native object._filter()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// filter(filterMethod: (value, key?: any) => boolean);
-		expect(data.filter).toBeDefined();
-		const filtered = data.filter((value, key) => key === 'hello');
+		expect(data._filter).toBeDefined();
+		const filtered = data._filter((value, key) => key === 'hello');
 		expect(filtered['hello']).toBeDefined();
 		expect(filtered['key']).toBeUndefined();
 	});
 
-	test('native object.map()', () => {
+	test('native object._map()', () => {
 		const data = {hello : 'world', key : 'Hi there.'};
 		// map(mapMethod: (value) => any);
-		expect(data.map).toBeDefined();
-		const mapped = data.map((value) => {
+		expect(data._map).toBeDefined();
+		const mapped = data._map((value) => {
 			return value + ' | Mapped';
 		});
 		expect(mapped['hello']).toEqual('world | Mapped');
@@ -123,29 +123,29 @@ describe('PatchedObject.ts', function () {
 		expect(data['key']).toEqual('Hi there.');
 	});
 
-	test('native object.keyBy()', () => {
+	test('native object._keyBy()', () => {
 		const data = {
 			1 : {id : 1, name : 'Jeff'},
 			2 : {id : 2, name : 'Bob'},
 		};
 		// keyBy(keyName: string);
-		expect(data.keyBy).toBeDefined();
+		expect(data._keyBy).toBeDefined();
 
-		const keyed = data.keyBy('name');
+		const keyed = data._keyBy('name');
 
 		expect(keyed.Bob.id).toEqual(2);
 		expect(keyed.Jeff.id).toEqual(1);
 
 	});
 
-	test('native object.pluck()', () => {
+	test('native object._pluck()', () => {
 		const data = {
 			1 : {id : 1, name : 'Jeff'},
 			2 : {id : 2, name : 'Bob'},
 		};
 		// pluck(keyName: string);
-		expect(data.pluck).toBeDefined();
-		const plucked = data.pluck('name');
+		expect(data._pluck).toBeDefined();
+		const plucked = data._pluck('name');
 		expect(plucked).toEqual(['Jeff', 'Bob']);
 	});
 

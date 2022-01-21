@@ -13,7 +13,7 @@ declare global {
 	}
 
 	interface Object {
-		isEmpty(): boolean;
+		_isEmpty(): boolean;
 
 		/**
 		 * Check if a property exists on an object.
@@ -21,7 +21,7 @@ declare global {
 		 * Contributed by https://github.com/Tecnology73
 		 * Commit was lost during mono-repo merge :(
 		 */
-		has(property: any, includePropertyChain?: boolean): boolean;
+		_has(property: any, includePropertyChain?: boolean): boolean;
 
 		/**
 		 * Check if a key exists on an object
@@ -30,7 +30,7 @@ declare global {
 		 * @param property
 		 * @returns {boolean}
 		 */
-		exists(property: any): boolean;
+		_exists(property: any): boolean;
 
 		/**
 		 * Put a new key->value into the object
@@ -38,7 +38,7 @@ declare global {
 		 * @param {string} key
 		 * @param value
 		 */
-		put(key: string, value: any);
+		_put(key: string, value: any);
 
 		/**
 		 * Get an item from the object, if it doesn't exist, return _default
@@ -46,14 +46,14 @@ declare global {
 		 * @param {string} key
 		 * @param _default
 		 */
-		get(key?: string, _default?: any);
+		_get(key?: string, _default?: any);
 
 		/**
 		 * Return a new object containing only the specified keys
 		 *
 		 * @param {string[]} keys
 		 */
-		only(keys: string[]);
+		_only(keys: string[]);
 
 		/**
 		 * Return a new object without the items specified by the keys
@@ -62,21 +62,21 @@ declare global {
 		 *
 		 * @param {string[]} keys
 		 */
-		except(keys: string[]);
+		_except(keys: string[]);
 
 		/**
 		 * Get the keys from the object
 		 *
 		 * @return {(string | number)[]}
 		 */
-		keys(): (string | number)[];
+		_keys(): (string | number)[];
 
 		/**
 		 * Remove an item from the object and return the updated object
 		 *
 		 * @param {string} key
 		 */
-		forget(key: string);
+		_forget(key: string);
 
 		/**
 		 * Get an item from the object, remove it, then return the item & the updated array
@@ -84,14 +84,14 @@ declare global {
 		 * @param {string} key
 		 * @param _default
 		 */
-		pull(key: string, _default?: any): any;
+		_pull(key: string, _default?: any): any;
 
 		/**
 		 * Return the count of the keys in the object
 		 *
 		 * @return {number}
 		 */
-		count(): number;
+		_count(): number;
 
 		/**
 		 * Creates a new object with all elements that pass the test implemented by the provided function.
@@ -102,13 +102,13 @@ declare global {
 		 *
 		 * @param {(value, key?: any) => boolean} filterMethod
 		 */
-		filter(filterMethod: (value, key?: any) => boolean);
+		_filter(filterMethod: (value, key?: any) => boolean);
 
-		map(mapMethod: (value) => any);
+		_map(mapMethod: (value) => any);
 
-		keyBy(keyName: string);
+		_keyBy(keyName: string);
 
-		pluck(keyName: string);
+		_pluck(keyName: string);
 	}
 }
 
@@ -119,29 +119,29 @@ export default class PatchedObject extends Object implements PatchesNativeType {
 	}
 
 	@patch()
-	isEmpty(): boolean {
+	_isEmpty(): boolean {
 		return Obj.isEmpty(this);
 	}
 
 	@patch()
-	exists(property: any): boolean {
+	_exists(property: any): boolean {
 		return Obj.exists(this, property);
 	}
 
 	@patch()
-	has(property: any, includePropertyChain: boolean = false): boolean {
+	_has(property: any, includePropertyChain: boolean = false): boolean {
 		return Obj.has(this, property, includePropertyChain);
 	}
 
 	@patch()
-	put(key: string, value: any) {
+	_put(key: string, value: any) {
 		this[key] = value;
 
 		return this;
 	}
 
 	@patch()
-	get(key?: string, _default: any = null) {
+	_get(key?: string, _default: any = null) {
 		if (key === undefined) {
 			return (this === undefined ? _default : this);
 		}
@@ -149,14 +149,14 @@ export default class PatchedObject extends Object implements PatchesNativeType {
 	}
 
 	@patch()
-	only(keys: string[]) {
+	_only(keys: string[]) {
 		const newObj = Object.create(this);
 
 		return _.pick(newObj, keys);
 	}
 
 	@patch()
-	except(keys: string[]) {
+	_except(keys: string[]) {
 		const values: any = {};
 
 		for (let key of Object.keys(this)) {
@@ -171,13 +171,13 @@ export default class PatchedObject extends Object implements PatchesNativeType {
 	}
 
 	@patch()
-	keys(): string[] {
+	_keys(): string[] {
 		return Object.keys(this);
 	}
 
 	@patch()
-	forget(key: string) {
-		if (!this.has(key)) {
+	_forget(key: string) {
+		if (!this._has(key)) {
 			return this;
 		}
 
@@ -187,21 +187,21 @@ export default class PatchedObject extends Object implements PatchesNativeType {
 	}
 
 	@patch()
-	pull(key: string, _default: any = null): any {
-		const value = this.get(key) ?? _default;
+	_pull(key: string, _default: any = null): any {
+		const value = this._get(key) ?? _default;
 
-		this.forget(key);
+		this._forget(key);
 
 		return value;
 	}
 
 	@patch()
-	count(): number {
+	_count(): number {
 		return Object.keys(this).length;
 	}
 
 	@patch()
-	filter(filterMethod: (value, key?: any) => boolean) {
+	_filter(filterMethod: (value, key?: any) => boolean) {
 		const filteredObj: any = {};
 
 		for (let key in this) {
@@ -216,7 +216,7 @@ export default class PatchedObject extends Object implements PatchesNativeType {
 	}
 
 	@patch()
-	map(mapMethod: (value) => any) {
+	_map(mapMethod: (value) => any) {
 		const newObj = _.toPlainObject(this);
 
 		for (let key in newObj) {
@@ -227,12 +227,12 @@ export default class PatchedObject extends Object implements PatchesNativeType {
 	}
 
 	@patch()
-	keyBy(keyName: string) {
+	_keyBy(keyName: string) {
 		return _.keyBy(this, keyName);
 	}
 
 	@patch()
-	pluck(keyName: string) {
+	_pluck(keyName: string) {
 		const result = [];
 
 		Object.values(this).forEach(value => {
